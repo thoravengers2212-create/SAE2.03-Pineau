@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./component/Movie/style.css" />
   </head>
 
   <body>
@@ -14,10 +15,10 @@
 
     <script type="module">
       import { NavBar } from "./component/NavBar/script.js";
+      import { Movie } from "./component/Movie/script.js";
+      import { DataMovie } from "./data/dataMovie.js";
 
       // Controleur
-      // Rappel, écrire window.C plutôt que let C est nécessaire pour tester depuis la console du navigateur
-      // Une fois l'application terminée, on pourrait remettre let C.
       window.C = {};
 
       C.handlerAbout = function () {
@@ -26,8 +27,11 @@
         );
       };
 
-      C.start = function () {
+      C.start = async function () {
         V.renderNavBar("C.handlerAbout()");
+        // Charger les films depuis le serveur
+        let movies = await DataMovie.requestMovies();
+        V.renderMovies(movies);
       };
 
       // Vue (contient tout ce qui est relatif à l'affichage)
@@ -43,6 +47,21 @@
       V.renderNavBar = function (hAbout) {
         let header = document.querySelector("#header");
         header.innerHTML = NavBar.format(hAbout);
+      };
+
+      /**
+       * V.renderMovies
+       *
+       * Cette fonction est responsable de l'affichage de la liste des films.
+       * Elle gère aussi le cas où aucun film n'est disponible.
+       */
+      V.renderMovies = function (movies) {
+        let content = document.querySelector("#content");
+        if (movies && movies.length > 0) {
+          content.innerHTML = Movie.formatMany(movies);
+        } else {
+          content.innerHTML = '<div class="no-movies">Aucun film disponible pour le moment.</div>';
+        }
       };
 
       C.start(); // Démarre l'application
