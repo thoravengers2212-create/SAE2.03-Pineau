@@ -5,3 +5,47 @@
 @import "./utilities.css" layer(utilities);
 
 @import "../component/Log/style.css" layer(components);
+@import "../component/Movie/style.css" layer(components);
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  padding: 2rem;
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--ff-sans);
+  min-height: 100vh;
+}
+
+section {
+  padding: 1.5rem;
+  background-color: #2a2a2a;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+section#log {
+  grid-column: 1;
+  order: 1;
+}
+
+section#movieform {
+  grid-column: 2;
+  order: 2;
+}
+
+@media (max-width: 768px) {
+  body {
+    grid-template-columns: 1fr;
+  }
+  
+  section#log,
+  section#movieform {
+    grid-column: 1;
+  }
+}

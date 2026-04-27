@@ -1,0 +1,44 @@
+<form id="movie">
+    <h2>Ajouter un film</h2>
+    
+    <label for="name">Titre du film</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="director">Réalisateur</label>
+    <input type="text" id="director" name="director" required>
+
+    <label for="year">Année de sortie</label>
+    <input type="number" id="year" name="year" required>
+
+    <label for="length">Durée (minutes)</label>
+    <input type="number" id="length" name="length" required>
+
+    <label for="description">Description ou synopsis</label>
+    <textarea id="description" name="description" required></textarea>
+
+    <label for="id_category">Catégorie</label>
+    <select id="id_category" name="id_category" required>
+        <option value="">-- Sélectionner une catégorie --</option>
+        <option value="1">Action</option>
+        <option value="5">Animation</option>
+        <option value="8">Aventure</option>
+        <option value="2">Comédie</option>
+        <option value="10">Documentaire</option>
+        <option value="3">Drame</option>
+        <option value="9">Fantaisie</option>
+        <option value="7">Horreur</option>
+        <option value="4">Science-fiction</option>
+        <option value="6">Thriller</option>
+    </select>
+
+    <label for="image">Nom du fichier de l'affiche ou image</label>
+    <input type="text" id="image" name="image" required>
+
+    <label for="trailer">URL du trailer</label>
+    <input type="url" id="trailer" name="trailer" required>
+
+    <label for="min_age">Restrictions d'âge</label>
+    <input type="number" id="min_age" name="min_age" min="0" max="99" required>
+
+    <button type="button">Ajouter</button>
+</form>
