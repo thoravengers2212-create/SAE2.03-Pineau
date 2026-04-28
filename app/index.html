@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/base.css" />
     <link rel="stylesheet" href="./component/Movie/style.css" />
+    <link rel="stylesheet" href="./component/MovieDetail/style.css" />
   </head>
 
   <body>
@@ -16,6 +17,7 @@
     <script type="module">
       import { NavBar } from "./component/NavBar/script.js";
       import { Movie } from "./component/Movie/script.js";
+      import { MovieDetail } from "./component/MovieDetail/script.js";
       import { DataMovie } from "./data/dataMovie.js";
 
       // Controleur
@@ -25,6 +27,20 @@
         alert(
           "Ceci est une base de projet pour la SAE2.03 édition 2025. Bonne chance !"
         );
+      };
+
+      C.handlerDetail = async function (id) {
+        // Récupère les détails du film depuis le serveur
+        let movie = await DataMovie.requestMovieDetails(id);
+        
+        // Affiche les détails du film
+        V.renderMovieDetail(movie);
+      };
+
+      C.handlerList = async function () {
+        // Affiche la liste des films
+        let movies = await DataMovie.requestMovies();
+        V.renderMovies(movies);
       };
 
       C.start = async function () {
@@ -61,6 +77,20 @@
           content.innerHTML = Movie.formatMany(movies);
         } else {
           content.innerHTML = '<div class="no-movies">Aucun film disponible pour le moment.</div>';
+        }
+      };
+
+      /**
+       * V.renderMovieDetail
+       *
+       * Cette fonction est responsable de l'affichage des détails d'un film.
+       */
+      V.renderMovieDetail = function (movie) {
+        let content = document.querySelector("#content");
+        if (movie && movie.id) {
+          content.innerHTML = MovieDetail.format(movie);
+        } else {
+          content.innerHTML = '<div class="error">Film non trouvé.</div>';
         }
       };
 

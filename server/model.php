@@ -34,6 +34,31 @@ function getAllMovies(){
 }
 
 /**
+ * Récupère les détails d'un film par son ID
+ * 
+ * @param int $id Identifiant du film
+ * 
+ * @return object|false Objet du film ou false si non trouvé
+ */
+function getMovieDetailsById($id){
+    try {
+        // Connexion à la base de données
+        $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+        // Requête SQL pour récupérer tous les détails d'un film
+        $sql = "SELECT id, name, director, year, length, description, id_category, image, trailer, min_age FROM Movie WHERE id = :id";
+        // Prépare la requête SQL
+        $stmt = $cnx->prepare($sql);
+        // Exécute la requête SQL avec le paramètre ID
+        $stmt->execute(array(':id' => $id));
+        // Récupère le résultat sous forme d'objet
+        $res = $stmt->fetch(PDO::FETCH_OBJ);
+        return $res; // Retourne l'objet du film ou false si non trouvé
+    } catch (Exception $e) {
+        return false; // Retourne false en cas d'erreur
+    }
+}
+
+/**
  * Ajoute un nouveau film à la base de données
  * 
  * @param string $name Titre du film

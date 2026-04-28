@@ -1,0 +1,252 @@
+#moviedetail-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+}
+
+#moviedetail-hero {
+    height: 200px;
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.8), rgba(45, 45, 45, 0.8));
+    border-bottom: 3px solid #ff6b6b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.moviedetail-title-hero {
+    font-size: 4rem;
+    font-weight: 700;
+    margin: 0;
+    background: linear-gradient(135deg, #ff6b6b, #ff8e72);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+    text-align: center;
+}
+
+#moviedetail-content {
+    display: grid;
+    grid-template-columns: 450px 1fr 350px;
+    gap: 50px;
+    padding: 50px;
+    max-width: 1600px;
+    margin: 0 auto;
+    width: 100%;
+    align-items: start;
+}
+
+#moviedetail-poster-section {
+    position: sticky;
+    top: 120px;
+    height: fit-content;
+}
+
+#moviedetail-middle {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+}
+
+#moviedetail-trailer-section {
+    position: sticky;
+    top: 120px;
+    height: fit-content;
+}
+
+.moviedetail-poster {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.moviedetail-poster:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 45px rgba(255, 107, 107, 0.3);
+}
+
+#moviedetail-info {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.moviedetail-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin: 0 0 20px 0;
+    background: linear-gradient(135deg, #ff6b6b, #ff8e72);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+}
+
+.moviedetail-metadata {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 107, 107, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.metadata-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.metadata-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #ff6b6b;
+    letter-spacing: 1px;
+}
+
+.metadata-value {
+    font-size: 1.1rem;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.moviedetail-section {
+    margin-top: 40px;
+}
+
+.moviedetail-section h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 15px 0;
+    color: #ff6b6b;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+#moviedetail-synopsis-section {
+    padding: 50px;
+    max-width: 1600px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+#moviedetail-synopsis-section h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0 0 25px 0;
+    color: #ff6b6b;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+#moviedetail-synopsis {
+    line-height: 1.8;
+    color: #e0e0e0;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 20px;
+    border-left: 4px solid #ff6b6b;
+    border-radius: 8px;
+    margin: 0;
+}
+
+#moviedetail-trailer-section h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 15px 0;
+    color: #ff6b6b;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.trailer-wrapper {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+}
+
+#moviedetail-iframe {
+    border: none;
+    border-radius: 12px;
+    display: block;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    #moviedetail-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 30px;
+    }
+    
+    #moviedetail-poster-section {
+        position: static;
+        max-width: 400px;
+    }
+    
+    #moviedetail-trailer-section {
+        position: static;
+        max-width: 100%;
+    }
+    
+    .moviedetail-title-hero {
+        font-size: 2.5rem;
+    }
+    
+    #moviedetail-synopsis-section {
+        padding: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    #moviedetail-hero {
+        height: 120px;
+    }
+    
+    .moviedetail-title-hero {
+        font-size: 2rem;
+    }
+    
+    #moviedetail-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 20px;
+    }
+    
+    #moviedetail-poster-section {
+        max-width: 100%;
+    }
+    
+    #moviedetail-trailer-section {
+        max-width: 100%;
+    }
+    
+    .moviedetail-metadata {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+    
+    #moviedetail-iframe {
+        height: 300px !important;
+    }
+    
+    #moviedetail-synopsis {
+        font-size: 0.95rem;
+        padding: 15px;
+    }
+    
+    #moviedetail-synopsis-section h2 {
+        font-size: 1.5rem;
+    }
+    
+    #moviedetail-synopsis-section {
+        padding: 20px;
+    }
+}

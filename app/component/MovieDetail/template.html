@@ -1,0 +1,55 @@
+<div id="moviedetail-container">
+    <div id="moviedetail-hero">
+        <h1 id="moviedetail-title" class="moviedetail-title-hero">{{TITLE}}</h1>
+    </div>
+    
+    <div id="moviedetail-content">
+        <div id="moviedetail-poster-section">
+            <img id="moviedetail-image" src="{{IMAGE}}" alt="Affiche du film" class="moviedetail-poster">
+        </div>
+        
+        <div id="moviedetail-middle">
+            <div id="moviedetail-metadata" class="moviedetail-metadata">
+                <div class="metadata-item">
+                    <span class="metadata-label">Réalisateur</span>
+                    <span id="moviedetail-director" class="metadata-value">{{DIRECTOR}}</span>
+                </div>
+                <div class="metadata-item">
+                    <span class="metadata-label">Année</span>
+                    <span id="moviedetail-year" class="metadata-value">{{YEAR}}</span>
+                </div>
+                <div class="metadata-item">
+                    <span class="metadata-label">Durée</span>
+                    <span id="moviedetail-length" class="metadata-value">{{LENGTH}}</span> <span>minutes</span>
+                </div>
+                <div class="metadata-item">
+                    <span class="metadata-label">Catégorie</span>
+                    <span id="moviedetail-category" class="metadata-value">{{CATEGORY}}</span>
+                </div>
+                <div class="metadata-item">
+                    <span class="metadata-label">Restriction d'âge</span>
+                    <span id="moviedetail-minage" class="metadata-value">{{MINAGE}}</span><span>+</span>
+                </div>
+            </div>
+            
+            <div id="moviedetail-synopsis-section" class="moviedetail-section">
+                <h2>Synopsis</h2>
+                <p id="moviedetail-synopsis">{{SYNOPSIS}}</p>
+            </div>
+        </div>
+        
+        <div id="moviedetail-trailer-section">
+            <h2>Bande annonce</h2>
+            <div class="trailer-wrapper">
+                <iframe id="moviedetail-iframe" 
+                        src="{{TRAILER}}"
+                        width="100%" 
+                        height="500" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen="">
+                </iframe>
+            </div>
+        </div>
+    </div>
+</div>

@@ -27,6 +27,34 @@ function readMoviesController(){
 }
 
 /**
+ * Contrôleur pour lire les détails d'un film
+ * 
+ * @return array Détails du film ou message d'erreur
+ */
+function readMovieDetailController(){
+    // Vérification de l'ID du film
+    if (!isset($_REQUEST['id']) || $_REQUEST['id'] === '') {
+        return array('error' => 'L\'identifiant du film est obligatoire');
+    }
+    
+    $id = $_REQUEST['id'];
+    
+    // Validation de l'ID
+    if (!is_numeric($id) || $id < 1) {
+        return array('error' => 'L\'identifiant du film est invalide');
+    }
+    
+    // Appel de la fonction modèle pour obtenir les détails du film
+    $movie = getMovieDetailsById($id);
+    
+    if ($movie) {
+        return $movie;
+    } else {
+        return array('error' => 'Film non trouvé');
+    }
+}
+
+/**
  * Contrôleur pour ajouter un film à la base de données
  * 
  * Validation:
