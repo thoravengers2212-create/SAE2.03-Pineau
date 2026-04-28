@@ -36,36 +36,36 @@ function readMoviesController(){
  * - L'ID de catégorie doit être valide
  * - L'âge minimum doit être entre 0 et 99
  * 
- * @return false|string Message de succès ou false en cas d'erreur
+ * @return array Message de succès ou d'erreur
  */
 function addMovieController(){
     // Vérification des paramètres obligatoires
     if (!isset($_REQUEST['name']) || $_REQUEST['name'] === '') {
-        return false;
+        return array('error' => 'Le titre du film est obligatoire');
     }
     if (!isset($_REQUEST['director']) || $_REQUEST['director'] === '') {
-        return false;
+        return array('error' => 'Le réalisateur est obligatoire');
     }
     if (!isset($_REQUEST['year']) || $_REQUEST['year'] === '') {
-        return false;
+        return array('error' => 'L\'année de sortie est obligatoire');
     }
     if (!isset($_REQUEST['length']) || $_REQUEST['length'] === '') {
-        return false;
+        return array('error' => 'La durée est obligatoire');
     }
     if (!isset($_REQUEST['description']) || $_REQUEST['description'] === '') {
-        return false;
+        return array('error' => 'La description est obligatoire');
     }
     if (!isset($_REQUEST['id_category']) || $_REQUEST['id_category'] === '') {
-        return false;
+        return array('error' => 'La catégorie est obligatoire');
     }
     if (!isset($_REQUEST['image']) || $_REQUEST['image'] === '') {
-        return false;
+        return array('error' => 'Le nom du fichier image est obligatoire');
     }
     if (!isset($_REQUEST['trailer']) || $_REQUEST['trailer'] === '') {
-        return false;
+        return array('error' => 'L\'URL du trailer est obligatoire');
     }
     if (!isset($_REQUEST['min_age']) || $_REQUEST['min_age'] === '') {
-        return false;
+        return array('error' => 'La restriction d\'âge est obligatoire');
     }
     
     // Récupération des paramètres
@@ -81,22 +81,22 @@ function addMovieController(){
     
     // Validation de l'année
     if (!is_numeric($year) || $year < 1900 || $year > date('Y')) {
-        return false;
+        return array('error' => 'L\'année de sortie doit être entre 1900 et ' . date('Y'));
     }
     
     // Validation de la durée
     if (!is_numeric($length) || $length <= 0) {
-        return false;
+        return array('error' => 'La durée doit être un nombre positif');
     }
     
     // Validation de l'ID catégorie
     if (!is_numeric($id_category) || $id_category < 1 || $id_category > 10) {
-        return false;
+        return array('error' => 'La catégorie est invalide');
     }
     
     // Validation de l'âge minimum
     if (!is_numeric($min_age) || $min_age < 0 || $min_age > 99) {
-        return false;
+        return array('error' => 'La restriction d\'âge doit être entre 0 et 99');
     }
     
     // Appel de la fonction modèle pour ajouter le film
@@ -105,6 +105,6 @@ function addMovieController(){
     if ($result) {
         return array('message' => 'Le film a été ajouté avec succès.');
     } else {
-        return false;
+        return array('error' => 'Erreur lors de l\'ajout du film. Vérifiez votre connexion à la base de données.');
     }
 }

@@ -76,13 +76,13 @@ if ( isset($_REQUEST['todo']) ){
    * A ce stade, on a appelé la fonction de contrôleur appropriée et stocké le résultat dans la variable $data.
    * 
    * On a décidé que si les fonctions de contrôleur échouaient à répondre normalement à la requête HTTP,
-   * elle devait retourner false (par exemple il peut arriver que le serveur de base de données soit down).
-   * C'est un choix qui nous permet de savoir si un problème est survenu et de retourner un message d'erreur.
+   * elle doit retourner un tableau avec une clé 'error' contenant le message d'erreur.
+   * C'est un choix qui nous permet de savoir si un problème est survenu et de retourner un message d'erreur détaillé.
    * Si la fonction de contrôleur retourne false, on renvoie une réponse JSON avec un message d'erreur 
    * et un code de réponse HTTP 500 (Internal error), puis termine l'exécution du script (exit()).
    */
   if ($data===false){
-    echo json_encode('[error] Controller returns false');
+    echo json_encode(array('error' => 'Erreur interne du serveur'));
     http_response_code(500); // 500 == "Internal error"
     exit();
   }
