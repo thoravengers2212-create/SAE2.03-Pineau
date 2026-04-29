@@ -16,7 +16,7 @@
 }
 
 .moviedetail-title-hero {
-    font-size: 4rem;
+    font-size: 1.5rem;
     font-weight: 700;
     margin: 0;
     background: linear-gradient(135deg, #ff6b6b, #ff8e72);
@@ -25,16 +25,18 @@
     background-clip: text;
     line-height: 1.1;
     text-align: center;
+    max-width: 190px;
+    max-height: 190px;
 }
 
 #moviedetail-content {
-    display: grid;
-    grid-template-columns: 450px 1fr 350px;
+    display: flex;
+    flex-direction: row;
     gap: 50px;
     padding: 50px;
     max-width: 1600px;
     margin: 0 auto;
-    width: 100%;
+    width: 100%;    
     align-items: start;
 }
 
@@ -51,7 +53,7 @@
 }
 
 #moviedetail-trailer-section {
-    position: sticky;
+    position: absolute;
     top: 120px;
     height: fit-content;
 }
