@@ -153,12 +153,43 @@ function addProfileController(){
     }
     
     $name = $_REQUEST['name'];
-    $avatar = isset($_REQUEST['avatar']) ? $_REQUEST['avatar'] : '';
+    $avatar = '';
     $age_restriction = isset($_REQUEST['age_restriction']) ? $_REQUEST['age_restriction'] : 0;
     
     // Validation de la restriction d'âge
     if (!is_numeric($age_restriction) || $age_restriction < 0 || $age_restriction > 99) {
         return array('error' => 'La restriction d\'âge doit être un nombre entre 0 et 99');
+    }
+    
+    // Traiter l'upload du fichier avatar s'il existe
+    if (isset($_FILES['avatar']) && $_FILES['avatar']['error'] === UPLOAD_ERR_OK) {
+        $file = $_FILES['avatar'];
+        
+        // Vérifier le type de fichier
+        $allowed_types = array('image/jpeg', 'image/png', 'image/webp');
+        if (!in_array($file['type'], $allowed_types)) {
+            return array('error' => 'Type de fichier non autorisé. Utilisez JPG, PNG ou WebP.');
+        }
+        
+        // Vérifier la taille (max 5MB)
+        if ($file['size'] > 5 * 1024 * 1024) {
+            return array('error' => 'Le fichier est trop volumineux (max 5MB)');
+        }
+        
+        // Créer un nom de fichier sécurisé
+        $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
+        $avatar = 'profile_' . time() . '_' . uniqid() . '.' . $extension;
+        
+        // Créer le dossier images s'il n'existe pas
+        $upload_dir = '../images/';
+        if (!is_dir($upload_dir)) {
+            mkdir($upload_dir, 0755, true);
+        }
+        
+        // Déplacer le fichier
+        if (!move_uploaded_file($file['tmp_name'], $upload_dir . $avatar)) {
+            return array('error' => 'Erreur lors du téléchargement du fichier');
+        }
     }
     
     // Appel de la fonction modèle pour ajouter le profil
