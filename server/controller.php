@@ -136,3 +136,37 @@ function addMovieController(){
         return array('error' => 'Erreur lors de l\'ajout du film. Vérifiez votre connexion à la base de données.');
     }
 }
+
+/**
+ * Contrôleur pour ajouter un profil utilisateur
+ * 
+ * Validation:
+ * - Le nom doit être présent dans la requête
+ * - La restriction d'âge doit être numérique et valide (0, 12, 16, etc.)
+ * 
+ * @return array Message de succès ou d'erreur
+ */
+function addProfileController(){
+    // Vérification du paramètre obligatoire: nom
+    if (!isset($_REQUEST['name']) || $_REQUEST['name'] === '') {
+        return array('error' => 'Le nom du profil est obligatoire');
+    }
+    
+    $name = $_REQUEST['name'];
+    $avatar = isset($_REQUEST['avatar']) ? $_REQUEST['avatar'] : '';
+    $age_restriction = isset($_REQUEST['age_restriction']) ? $_REQUEST['age_restriction'] : 0;
+    
+    // Validation de la restriction d'âge
+    if (!is_numeric($age_restriction) || $age_restriction < 0 || $age_restriction > 99) {
+        return array('error' => 'La restriction d\'âge doit être un nombre entre 0 et 99');
+    }
+    
+    // Appel de la fonction modèle pour ajouter le profil
+    $result = addUserProfile($name, $avatar, $age_restriction);
+    
+    if ($result) {
+        return array('message' => 'Le profil a été ajouté avec succès.');
+    } else {
+        return array('error' => 'Erreur lors de l\'ajout du profil. Vérifiez votre connexion à la base de données.');
+    }
+}

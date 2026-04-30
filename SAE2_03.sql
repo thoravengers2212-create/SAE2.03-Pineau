@@ -119,6 +119,31 @@ ALTER TABLE `Movie`
 --
 ALTER TABLE `Movie`
   ADD CONSTRAINT `movie_ibfk_1` FOREIGN KEY (`id_category`) REFERENCES `Category` (`id`);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `UserProfile`
+--
+
+CREATE TABLE `UserProfile` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `avatar` varchar(255),
+  `age_restriction` int(11) DEFAULT 0,
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `UserProfile`
+--
+
+INSERT INTO `UserProfile` (`id`, `name`, `avatar`, `age_restriction`) VALUES
+(1, 'Parents', NULL, 0),
+(2, 'Enfants', NULL, 8),
+(3, 'Ados', NULL, 12);
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

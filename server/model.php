@@ -100,3 +100,34 @@ function addMovie($name, $director, $year, $length, $description, $id_category, 
     }
 }
 
+/**
+ * Ajoute un nouveau profil utilisateur à la base de données
+ * 
+ * @param string $name Nom du profil
+ * @param string $avatar Chemin de l'image avatar (facultatif)
+ * @param int $age_restriction Restriction d'âge (0 pour tous publics)
+ * 
+ * @return bool true si succès, false sinon
+ */
+function addUserProfile($name, $avatar, $age_restriction){
+    try {
+        // Connexion à la base de données
+        $cnx = new PDO("mysql:host=".HOST.";dbname=".DBNAME, DBLOGIN, DBPWD);
+        // Requête SQL pour insérer un profil utilisateur
+        $sql = "INSERT INTO UserProfile (name, avatar, age_restriction) 
+                VALUES (:name, :avatar, :age_restriction)";
+        // Prépare la requête SQL
+        $stmt = $cnx->prepare($sql);
+        // Exécute la requête SQL avec les paramètres
+        $result = $stmt->execute(array(
+            ':name' => $name,
+            ':avatar' => $avatar,
+            ':age_restriction' => $age_restriction
+        ));
+        return $result; // Retourne true si succès, false sinon
+    } catch (Exception $e) {
+        return false; // Retourne false en cas d'erreur
+    }
+}
+
+

@@ -1,0 +1,53 @@
+<form id="profile-form" class="profile-form">
+  <h2 class="form-title">Ajouter un nouveau profil utilisateur</h2>
+  
+  <div class="form-group">
+    <label for="profile-name">Nom du profil *</label>
+    <input 
+      type="text" 
+      id="profile-name" 
+      name="name" 
+      class="form-control" 
+      placeholder="Ex: Parents, Enfants, Ados..."
+      required
+    />
+  </div>
+  
+  <div class="form-group">
+    <label for="profile-avatar">Avatar ou image (facultatif)</label>
+    <input 
+      type="file" 
+      id="profile-avatar" 
+      name="avatar" 
+      class="form-control" 
+      accept="image/*"
+    />
+    <small>Format accepté: JPG, PNG, WebP</small>
+  </div>
+  
+  <div class="form-group">
+    <label for="profile-age">Restriction d'âge *</label>
+    <select 
+      id="profile-age" 
+      name="age_restriction" 
+      class="form-control"
+      required
+    >
+      <option value="0">0 - Tous publics</option>
+      <option value="3">3 ans</option>
+      <option value="6">6 ans</option>
+      <option value="8">8 ans</option>
+      <option value="10">10 ans</option>
+      <option value="12">12 ans</option>
+      <option value="16">16 ans</option>
+      <option value="18">18 ans</option>
+    </select>
+  </div>
+  
+  <div class="form-actions">
+    <button type="submit" class="btn btn-primary">Ajouter le profil</button>
+    <button type="reset" class="btn btn-secondary">Réinitialiser</button>
+  </div>
+  
+  <div id="form-message" class="form-message" style="display: none;"></div>
+</form>

@@ -5,24 +5,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./component/ProfileForm/style.css" />
   </head>
   <body>
     <section id="log"></section>
     <section id="movieform"></section>
+    <section id="profileform"></section>
 
     <script type="module">
       import { Log } from "./component/Log/script.js";
       import { MovieForm } from "./component/Movie/script.js";
+      import { ProfileForm } from "./component/ProfileForm/script.js";
 
       window.C = {};
 
       C.start = function () {
         V.renderLog("Démarrage de l'application");
         V.renderMovieForm();
+        V.renderProfileForm();
       };
 
       C.log = function (txt) {
         V.renderLog(txt);
+      };
+
+      C.handlerAddProfile = function () {
+        V.renderProfileForm();
       };
 
       window.V = {};
@@ -36,6 +44,12 @@
         let content = document.querySelector("#movieform");
         content.innerHTML = MovieForm.format();
         MovieForm.init();
+      };
+
+      V.renderProfileForm = function () {
+        let content = document.querySelector("#profileform");
+        content.innerHTML = ProfileForm.format();
+        ProfileForm.init();
       };
 
       C.start();
