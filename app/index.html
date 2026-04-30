@@ -40,18 +40,16 @@
       };
 
       C.handlerList = async function () {
-        // Affiche la liste des films regroupés par catégorie
+        // Affiche la liste des films
         let movies = await DataMovie.requestMovies();
-        let categorizedMovies = DataMovie.groupByCategory(movies);
-        V.renderMoviesByCategory(categorizedMovies);
+        V.renderMovies(movies);
       };
 
       C.start = async function () {
         V.renderNavBar("C.handlerAbout()");
-        // Charger les films depuis le serveur et les afficher par catégorie
+        // Charger les films depuis le serveur
         let movies = await DataMovie.requestMovies();
-        let categorizedMovies = DataMovie.groupByCategory(movies);
-        V.renderMoviesByCategory(categorizedMovies);
+        V.renderMovies(movies);
       };
 
       // Vue (contient tout ce qui est relatif à l'affichage)
