@@ -23,4 +23,37 @@ DataMovie.requestMovieDetails = async function(id){
     return data;
 }
 
+/**
+ * Regroupe les films par catégorie
+ * @param {array} movies - Tableau des films
+ * @returns {object} Objet avec les films regroupés par catégorie ID
+ */
+DataMovie.groupByCategory = function(movies) {
+    let grouped = {};
+    
+    if (!movies || !Array.isArray(movies)) {
+        return grouped;
+    }
+    
+    for (const movie of movies) {
+        const categoryId = movie.id_category || 0;
+        
+        // Créer la catégorie si elle n'existe pas
+        if (!grouped[categoryId]) {
+            grouped[categoryId] = [];
+        }
+        
+        // Ajouter le film à sa catégorie
+        grouped[categoryId].push(movie);
+    }
+    
+    // Trier par catégorie ID
+    const sorted = {};
+    Object.keys(grouped).sort((a, b) => a - b).forEach(key => {
+        sorted[key] = grouped[key];
+    });
+    
+    return sorted;
+}
+
 export {DataMovie};

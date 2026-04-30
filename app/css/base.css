@@ -29,6 +29,16 @@ body {
   margin: 0 auto;
 }
 
+/* Layout en colonnes unique pour les catégories */
+#content:has(.movie-category) {
+  display: flex;
+  flex-direction: column;
+  grid-template-columns: unset;
+  gap: unset;
+  padding: 0;
+  max-width: 100%;
+}
+
 .no-movies {
   grid-column: 1 / -1;
   text-align: center;
@@ -39,7 +49,7 @@ body {
 }
 
 @media (max-width: 1024px) {
-  #content {
+  #content:not(:has(.movie-category)) {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 24px;
     padding: 30px;
@@ -47,7 +57,7 @@ body {
 }
 
 @media (max-width: 768px) {
-  #content {
+  #content:not(:has(.movie-category)) {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 16px;
     padding: 20px;
@@ -55,7 +65,7 @@ body {
 }
 
 @media (max-width: 480px) {
-  #content {
+  #content:not(:has(.movie-category)) {
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     gap: 12px;
     padding: 12px;
