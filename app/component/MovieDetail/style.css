@@ -1,10 +1,14 @@
-#content {
+/* Réinitialiser le layout grid du base.css pour la page MovieDetail */
+#content:has(#moviedetail-container) {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
     color: #e0e0e0;
+    grid-template-columns: unset;
+    gap: unset;
+    padding: 0;
 }
 
 #moviedetail-container {
@@ -51,20 +55,15 @@
 }
 
 #moviedetail-poster-section {
-    position: sticky;
-    top: 120px;
     height: fit-content;
 }
 
 #moviedetail-middle {
     display: flex;
     flex-direction: row;
-    gap: 40px;
 }
 
 #moviedetail-trailer-section {
-    position: absolute;
-    top: 120px;
     height: fit-content;
 }
 
